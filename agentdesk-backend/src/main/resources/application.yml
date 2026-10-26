@@ -1,0 +1,31 @@
+spring:
+  application:
+    name: agentdesk-backend
+  datasource:
+    url: ${DB_URL:jdbc:postgresql://localhost:5432/agentdesk}
+    username: ${DB_USERNAME:agentdesk}
+    password: ${DB_PASSWORD:agentdesk}
+  jpa:
+    hibernate:
+      ddl-auto: validate
+    open-in-view: false
+  flyway:
+    enabled: true
+  data:
+    redis:
+      host: ${REDIS_HOST:localhost}
+      port: ${REDIS_PORT:6379}
+  ai:
+    openai:
+      api-key: ${OPENAI_API_KEY:changeme}
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          issuer-uri: ${JWT_ISSUER_URI:http://localhost:8081/realms/agentdesk}
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info
